@@ -1,5 +1,5 @@
 var express = require('express');
-var db = require('./db');
+var db = require('server/db/index.js');
 
 // Middleware
 var morgan = require('morgan');
@@ -20,6 +20,25 @@ app.use(parser.json());
 
 // Set up our routes
 app.use("/classes", router);
+
+// Set up post and get
+
+app.get('/messages', function(req, res) {
+  db.query('select * from messages', function(err, results) {
+    res.status(200).send(results);
+  });
+});
+
+app.post('/room/*', function(req, res) {
+  var room = req.path.slice(6);
+  var item = localStorage.getItem(room) || [];
+  req.body.objectId = prevID++;
+  localStorage.setItem('prevID',prevID);
+  item.push(req.body);
+  localStorage.setItem(room, JSON.stringify(item));
+  res.status(201).send('Posted');
+});
+
 
 // Serve the client files
 app.use(express.static(__dirname + "/../client"));
