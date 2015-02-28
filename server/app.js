@@ -18,23 +18,16 @@ app.set("port", 3000);
 app.use(morgan('dev'));
 app.use(parser.json());
 
-// Set up our routes
-app.use("/classes", router);
-
 // Set up post and get
 
-app.get('/messages', function(req, res) {
-  db.query('select * from messages', function(err, results) {
-    res.status(200).send(results);
-  });
-});
+// app.get('/messages', function(req, res) {});
 
-app.post('/messages', function(req, res) {
-  var post = {username: req.body.username, text: req.body.text, roomname: req.body.roomname};
-  db.query('insert into messages set ?', post, function(err, results) {
-    res.status(201).send(results);
-  });
-});
+// app.post('/messages', function(req, res) {});
+
+
+// Set up our routes
+app.use(router);
+
 
 
 // Serve the client files
