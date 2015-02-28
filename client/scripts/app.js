@@ -65,7 +65,7 @@ $(function() {
           console.log('chatterbox: Messages fetched');
 
           // Don't bother if we have nothing to work with
-          if (!data || !data.length) { return; }
+          // if (!data || !data.length) {}
 
           // Get the last message
           var mostRecentMessage = data[data.length-1];
