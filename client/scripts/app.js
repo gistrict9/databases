@@ -73,7 +73,7 @@ $(function() {
           app.populateMessages(data);
           app.stopSpinner();
           // Only bother updating the DOM if we have a new message
-          // if (mostRecentMessage.objectId !== app.lastMessageId || app.roomname !== displayedRoom) {
+          // if (mostRecentMessage.ObjectId !== app.lastMessageId || app.roomname !== displayedRoom) {
           //   // Update the UI with the fetched rooms
           //   app.populateRooms(data);
 
@@ -81,7 +81,7 @@ $(function() {
           //   app.populateMessages(data, animate);
 
           //   // Store the ID of the most recent message
-          //   app.lastMessageId = mostRecentMessage.objectId;
+          //   app.lastMessageId = mostRecentMessage.ObjectId;
           // }
         },
         error: function(data) {

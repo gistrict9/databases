@@ -29,14 +29,11 @@ app.get('/messages', function(req, res) {
   });
 });
 
-app.post('/room/*', function(req, res) {
-  var room = req.path.slice(6);
-  var item = localStorage.getItem(room) || [];
-  req.body.objectId = prevID++;
-  localStorage.setItem('prevID',prevID);
-  item.push(req.body);
-  localStorage.setItem(room, JSON.stringify(item));
-  res.status(201).send('Posted');
+app.post('/messages', function(req, res) {
+  var post = {username: req.body.username, text: req.body.text, roomname: req.body.roomname};
+  db.query('insert into messages set ?', post, function(err, results) {
+    res.status(201).send(results);
+  });
 });
 
 
